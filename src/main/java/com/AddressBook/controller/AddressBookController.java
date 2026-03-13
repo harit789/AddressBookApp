@@ -9,28 +9,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.AddressBook.dto.ContactDTO;
 import com.AddressBook.model.Contact;
 import com.AddressBook.service.AddressBookService;
 
 @RestController
 @RequestMapping("/addressbook")
 public class AddressBookController {
-	
-	@Autowired
-	private AddressBookService addressBookService;
-	
-	@GetMapping("/")
-	public String welcomePage() {
-		return "Welcome to the Address Book App!";
-	}
-	
-	@PostMapping("/contact")
-	public Contact addContact(@RequestBody Contact contact) {
-		return addressBookService.addContact(contact);
-	}
-	
-	@GetMapping("/contacts")
-	public List<Contact> getContacts(){
-		return addressBookService.getContacts();
-	}
+
+    @Autowired
+    private AddressBookService addressBookService;
+
+    @PostMapping("/contact")
+    public Contact addContact(@RequestBody ContactDTO contactDTO) {
+        return addressBookService.addContact(contactDTO);
+    }
+
+    @GetMapping("/contacts")
+    public List<Contact> getContacts() {
+        return addressBookService.getContacts();
+    }
+    
 }

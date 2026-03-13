@@ -1,6 +1,7 @@
-package com.AddressBook.model;
+package com.AddressBook.dto;
 
-public class Contact {
+public class ContactDTO {
+
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -10,19 +11,7 @@ public class Contact {
 	private String phoneNumber;
 	private String email;
 
-	public Contact() {
-	}
-
-	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
-			String phoneNumber, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
+	public ContactDTO() {
 	}
 
 	public String getFirstName() {
@@ -88,11 +77,4 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@Override
-	public String toString() {
-		return "Contact [firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
-	}
-
 }
