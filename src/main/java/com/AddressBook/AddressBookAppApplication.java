@@ -14,18 +14,27 @@ public class AddressBookAppApplication {
 
 	public static void main(String[] args) {
 
-		ApplicationContext context =
-				SpringApplication.run(AddressBookAppApplication.class, args);
+		ApplicationContext context = SpringApplication.run(AddressBookAppApplication.class, args);
 
 		System.out.println("Welcome to the Address Book App");
 
-		AddressBookService addressBookService =
-				context.getBean(AddressBookService.class);
+		AddressBookService addressBookService = context.getBean(AddressBookService.class);
 
 		Scanner scanner = new Scanner(System.in);
-		String choice;
 
-		do {
+		System.out.println("\nAddress Book Menu");
+		System.out.println("1. Add Contact");
+		System.out.println("2. Edit Contact");
+		System.out.println("3. Display Contacts");
+
+		System.out.println("Choose option :");
+
+		int temp = scanner.nextInt();
+		scanner.nextLine(); 
+
+		switch (temp) {
+
+		case 1:
 
 			ContactDTO contactDTO = new ContactDTO();
 
@@ -56,14 +65,45 @@ public class AddressBookAppApplication {
 			addressBookService.addContact(contactDTO);
 
 			System.out.println("Contact Added Successfully");
+			break;
 
-			System.out.println("Want to add more address [Y/N]:");
-			choice = scanner.next();
+		case 2:
 
+			System.out.println("Enter first name to edit:");
+			String name = scanner.nextLine();
 
-		} while (choice.equalsIgnoreCase("y"));
+			ContactDTO updatedDTO = new ContactDTO();
 
-		System.out.println(addressBookService.getContacts());
+			System.out.println("Enter New Last Name:");
+			updatedDTO.setLastName(scanner.nextLine());
+
+			System.out.println("Enter New Address:");
+			updatedDTO.setAddress(scanner.nextLine());
+
+			System.out.println("Enter New City:");
+			updatedDTO.setCity(scanner.nextLine());
+
+			System.out.println("Enter New State:");
+			updatedDTO.setState(scanner.nextLine());
+
+			System.out.println("Enter New Zip:");
+			updatedDTO.setZip(scanner.nextLine());
+
+			System.out.println("Enter New Phone:");
+			updatedDTO.setPhoneNumber(scanner.nextLine());
+
+			addressBookService.editContact(name, updatedDTO);
+
+			break;
+
+		case 3:
+
+			addressBookService.displayContacts();
+			break;
+
+		default:
+			System.out.println("Invalid Choice");
+		}
 
 	}
 }
